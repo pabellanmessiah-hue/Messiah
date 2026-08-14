@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pagkaon ni Amal | Delicious Food & Refreshing Drinks</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================
+       1. CSS VARIABLES & BASE STYLES
+       ========================================== */
+    :root {
+      --primary-red: #e63946;
+      --primary-orange: #f77f00;
+      --accent-yellow: #fcbf49;
+      --dark-bg: #1d3557;
+      --light-bg: #fff8f0;
+      --card-bg: #ffffff;
+      --text-dark: #2b2d42;
+      --text-muted: #6c757d;
+      --shadow: 0 8px 24px rgba(0,0,0,0.08);
+      --border-radius: 16px;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--light-bg);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ==========================================
+       2. STICKY NAVIGATION BAR
+       ========================================== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      border-bottom: 3px solid var(--primary-orange);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .brand-logo .logo-icon {
+      background: linear-gradient(135deg, var(--primary-red), var(--primary-orange));
+      color: white;
+      font-weight: 800;
+      font-size: 1.4rem;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(230, 57, 70, 0.3);
+    }
+
+    .brand-logo .logo-text {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--primary-red);
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      padding: 6px 12px;
+      border-radius: 20px;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--primary-red);
+      background: rgba(230, 57, 70, 0.08);
+    }
+
+    /* Top Right Cart Button */
+    .cart-btn-nav {
+      background: linear-gradient(135deg, var(--primary-red), var(--primary-orange));
+      color: white !important;
+      padding: 8px 18px !important;
+      border-radius: 30px !important;
+      font-weight: 700 !important;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(230, 57, 70, 0.25);
+      cursor: pointer;
+    }
+
+    .cart-btn-nav:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(230, 57, 70, 0.35);
+    }
+
+    .cart-badge {
+      background: var(--accent-yellow);
+      color: var(--text-dark);
+      font-size: 0.8rem;
+      padding: 2px 8px;
+      border-radius: 12px;
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background-color: var(--text-dark);
+      border-radius: 3px;
+      transition: var(--transition);
+    }
+
+    /* ==========================================
+       3. SECTIONS & GENERAL BUTTONS
+       ========================================== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: 60px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--primary-red);
+      margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      font-size: 1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-red), var(--primary-orange));
+      color: white;
+      box-shadow: 0 6px 18px rgba(230, 57, 70, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 22px rgba(230, 57, 70, 0.4);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--primary-red);
+      border: 2px solid var(--primary-red);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(230, 57, 70, 0.05);
+      transform: translateY(-3px);
+    }
+
+    /* ==========================================
+       4. HERO & PROMOTIONAL SECTION
+       ========================================== */
+    .hero {
+      background: linear-gradient(rgba(29, 53, 87, 0.85), rgba(29, 53, 87, 0.85)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      color: white;
+      border-radius: 0 0 30px 30px;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+      color: var(--accent-yellow);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 650px;
+      margin: 0 auto 30px auto;
+      color: #e0e0e0;
+    }
+
+    .hero-btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .home-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      margin-top: 50px;
+    }
+
+    .gallery-item {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 15px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+
+    .promo-card {
+      background: linear-gradient(135deg, var(--primary-orange), var(--primary-red));
+      color: white;
+      border-radius: var(--border-radius);
+      padding: 40px 30px;
+      margin-top: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      box-shadow: 0 10px 30px rgba(247, 127, 0, 0.3);
+    }
+
+    .promo-text h2 {
+      font-size: 2rem;
+      color: var(--accent-yellow);
+      margin-bottom: 10px;
+    }
+
+    .promo-badge {
+      background: var(--accent-yellow);
+      color: var(--text-dark);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-weight: 800;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    /* ==========================================
+       5. SEARCH & MENU FILTERS
+       ========================================== */
+    .search-box {
+      max-width: 500px;
+      margin: 0 auto 25px auto;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 14px 20px 14px 45px;
+      border: 2px solid #e2e8f0;
+      border-radius: 30px;
+      font-size: 1rem;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .search-box input:focus {
+      border-color: var(--primary-orange);
+      box-shadow: 0 0 0 4px rgba(247, 127, 0, 0.15);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+
+    .category-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .cat-btn {
+      background: white;
+      border: 2px solid #e2e8f0;
+      padding: 8px 20px;
+      border-radius: 25px;
+      font-weight: 600;
+      color: var(--text-dark);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .cat-btn:hover, .cat-btn.active {
+      background: var(--primary-red);
+      color: white;
+      border-color: var(--primary-red);
+    }
+
+    /* ==========================================
+       6. FOOD CARDS & BEST SERVES
+       ========================================== */
+    .food-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 25px;
+    }
+
+    .food-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid #f0f0f0;
+    }
+
+    .food-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+    }
+
+    .food-img-wrapper {
+      height: 180px;
+      overflow: hidden;
+    }
+
+    .food-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .food-info {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .food-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .food-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 15px;
+      flex-grow: 1;
+    }
+
+    .food-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .food-price {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--primary-red);
+    }
+
+    .qty-control {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #f8f9fa;
+      padding: 4px 8px;
+      border-radius: 20px;
+      border: 1px solid #e9ecef;
+    }
+
+    .qty-btn {
+      background: white;
+      border: 1px solid #ced4da;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .qty-btn:hover {
+      background: var(--primary-red);
+      color: white;
+      border-color: var(--primary-red);
+    }
+
+    .qty-num {
+      font-weight: 700;
+      font-size: 0.9rem;
+      min-width: 16px;
+      text-align: center;
+    }
+
+    .add-to-cart-btn {
+      width: 100%;
+      margin-top: 15px;
+      background: var(--primary-orange);
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 25px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .add-to-cart-btn:hover {
+      background: var(--primary-red);
+    }
+
+    .best-serves-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .best-card {
+      background: white;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 2px solid var(--accent-yellow);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .best-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .best-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .best-card-body {
+      padding: 25px;
+    }
+
+    .bestseller-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--primary-red);
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    /* ==========================================
+       7. ABOUT US & MY ACCOUNT SECTIONS
+       ========================================== */
+    .about-card, .account-card {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 40px;
+      box-shadow: var(--shadow);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .about-info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .info-item {
+      background: var(--light-bg);
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 4px solid var(--primary-orange);
+    }
+
+    .info-item a {
+      color: var(--primary-orange);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* Auth & Account Tab Styling */
+    .auth-toggle-btns {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .auth-toggle-btns button {
+      padding: 10px 24px;
+      border-radius: 20px;
+      border: 2px solid var(--primary-red);
+      background: transparent;
+      color: var(--primary-red);
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .auth-toggle-btns button.active {
+      background: var(--primary-red);
+      color: white;
+    }
+
+    .auth-form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .order-history-list {
+      margin-top: 20px;
+    }
+
+    .order-history-card {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 15px;
+    }
+
+    .order-history-header {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dashed #ccc;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    /* ==========================================
+       8. CART DRAWER & MODALS
+       ========================================== */
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: -420px;
+      width: 100%;
+      max-width: 400px;
+      height: 100vh;
+      background: white;
+      box-shadow: -5px 0 25px rgba(0,0,0,0.15);
+      z-index: 2000;
+      transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart-drawer.open {
+      right: 0;
+    }
+
+    .cart-header {
+      background: var(--primary-red);
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .close-cart {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    .cart-body {
+      padding: 20px;
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+
+    .empty-cart-msg {
+      text-align: center;
+      color: var(--text-muted);
+      margin-top: 50px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .cart-item img {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .cart-item-details {
+      flex-grow: 1;
+    }
+
+    .cart-footer {
+      padding: 20px;
+      border-top: 1px solid #eee;
+      background: #f8f9fa;
+    }
+
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.5);
+      z-index: 1500;
+      display: none;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    /* Modal Forms & Receipt */
+    .modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 30px;
+      max-width: 500px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      z-index: 2500;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .modal.active {
+      opacity: 1;
+      pointer-events: all;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    /* Printable-style Receipt */
+    .receipt-box {
+      background: #fffdf9;
+      border: 2px dashed #333;
+      padding: 20px;
+      font-family: monospace;
+      margin: 15px 0;
+      border-radius: 8px;
+    }
+
+    .receipt-title {
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+    }
+
+    .receipt-line {
+      display: flex;
+      justify-content: space-between;
+      margin: 4px 0;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--dark-bg);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: 600;
+      z-index: 3000;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--primary-red);
+      color: white;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition);
+      z-index: 900;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    footer {
+      background: var(--dark-bg);
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 60px;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: white;
+        flex-direction: column;
+        padding: 40px 20px;
+        transition: var(--transition);
+      }
+
+      .nav-links.active {
+        left: 0;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .promo-card {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .cart-btn-nav {
+        margin-left: auto;
+        margin-right: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       NAVIGATION BAR
+       ========================================== -->
+  <header>
+    <div class="nav-container">
+      <a href="#home" class="brand-logo">
+        <div class="logo-icon">A</div>
+        <div class="logo-text">Pagkaon ni Amal</div>
+      </a>
+
+      <!-- Always visible Top-Right Cart Button -->
+      <div class="cart-btn-nav" id="cart-nav-btn" onclick="toggleCartDrawer()">
+        🛒 Cart <span class="cart-badge" id="cart-counter">0</span>
+      </div>
+
+      <div class="hamburger" id="hamburger-menu" onclick="toggleMobileNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home" class="nav-item active" onclick="closeMobileNav()">Home</a></li>
+        <li><a href="#food" class="nav-item" onclick="closeMobileNav()">Food</a></li>
+        <li><a href="#best-serves" class="nav-item" onclick="closeMobileNav()">Best Serves</a></li>
+        <li><a href="#about" class="nav-item" onclick="closeMobileNav()">About Us</a></li>
+        <li><a href="#my-account" class="nav-item" onclick="closeMobileNav()">My Account</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       HOME SECTION
+       ========================================== -->
+  <section id="home" style="padding-top:0;">
+    <div class="hero">
+      <div class="container">
+        <h1>Welcome to Pagkaon ni Amal!</h1>
+        <p>Delicious food, refreshing drinks, and satisfying meals—all in one place!</p>
+        <div class="hero-btn-group">
+          <a href="#food" class="btn btn-primary">Order Now</a>
+          <a href="#food" class="btn btn-secondary">View Menu</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="home-gallery">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80" alt="Pizza">
+          <h4>Pizza</h4>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80" alt="Burgers">
+          <h4>Burgers</h4>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1576107232684-1279f3908594?auto=format&fit=crop&w=400&q=80" alt="Fries">
+          <h4>Fries</h4>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=400&q=80" alt="Fried Chicken">
+          <h4>Fried Chicken</h4>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=400&q=80" alt="Shakes">
+          <h4>Shakes</h4>
+        </div>
+      </div>
+
+      <div class="promo-card">
+        <div class="promo-text">
+          <span class="promo-badge">TODAY'S SPECIAL 🌟</span>
+          <h2>Special Meal Deal!</h2>
+          <p>Buy 1 Burger + Fries + Shake and enjoy a special meal deal!</p>
+          <button class="btn btn-primary" style="background: white; color: var(--primary-red);" onclick="addComboToCart()">Order Deal Now (₱199)</button>
+        </div>
+        <img src="https://images.unsplash.com/photo-1610614819513-58e34989848b?auto=format&fit=crop&w=400&q=80" alt="Special Deal" style="border-radius:12px; width:220px; height:150px; object-fit:cover;">
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       FOOD MENU SECTION
+       ========================================== -->
+  <section id="food">
+    <div class="container">
+      <h2 class="section-title">Explore Our Menu</h2>
+      <p class="section-subtitle">Select your favorite meals and drinks below</p>
+
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" placeholder=" Search for your favorite food..." oninput="filterMenu()">
+      </div>
+
+      <div class="category-buttons">
+        <button class="cat-btn active" onclick="filterCategory('All', this)">All</button>
+        <button class="cat-btn" onclick="filterCategory('Pizza', this)">Pizza</button>
+        <button class="cat-btn" onclick="filterCategory('Burger', this)">Burger</button>
+        <button class="cat-btn" onclick="filterCategory('Fries', this)">Fries</button>
+        <button class="cat-btn" onclick="filterCategory('Fried Chicken', this)">Fried Chicken</button>
+        <button class="cat-btn" onclick="filterCategory('Shakes', this)">Shakes</button>
+      </div>
+
+      <div class="food-grid" id="food-grid-container">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       BEST SERVES SECTION
+       ========================================== -->
+  <section id="best-serves" style="background: rgba(252, 191, 73, 0.08);">
+    <div class="container">
+      <h2 class="section-title">Our Best Serves ⭐</h2>
+      <p class="section-subtitle">Our crowd-favorite meals crafted with maximum flavor</p>
+
+      <div class="best-serves-grid" id="best-serves-container">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       ABOUT US SECTION
+       ========================================== -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About Us</h2>
+      <p class="section-subtitle">Get to know your local favorite food store</p>
+
+      <div class="about-card">
+        <h3 style="color: var(--primary-red); margin-bottom: 15px;">About Pagkaon ni Amal</h3>
+        <p>Pagkaon ni Amal is a local food business dedicated to serving delicious, affordable, and satisfying food for our customers. We offer a variety of favorites including pizza, burgers, fries, fried chicken, and refreshing shakes. Our goal is to provide good food, friendly service, and a convenient ordering experience for everyone in our community.</p>
+
+        <div class="about-info-grid">
+          <div class="info-item">
+            <h4>📍 Location</h4>
+            <p>Lourmah, Mahayag, Zamboanga del Sur, Philippines</p>
+          </div>
+          <div class="info-item">
+            <h4>📞 Contact Number</h4>
+            <p>09163983130</p>
+          </div>
+          <div class="info-item">
+            <h4>📘 Facebook</h4>
+            <p><a href="https://facebook.com" target="_blank" rel="noopener">Amal Foods</a></p>
+          </div>
+          <div class="info-item">
+            <h4>🎵 TikTok</h4>
+            <p><a href="https://tiktok.com" target="_blank" rel="noopener">Amal Foods</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       MY ACCOUNT & ORDER HISTORY SECTION
+       ========================================== -->
+  <section id="my-account" style="background: rgba(230, 57, 70, 0.03);">
+    <div class="container">
+      <h2 class="section-title">My Account</h2>
+      <p class="section-subtitle">Manage your account and view your order history</p>
+
+      <div class="account-card" id="account-card-content">
+        <!-- Javascript renders auth forms or user profile + order history -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       CART DRAWER & MODALS
+       ========================================== -->
+  <div class="overlay" id="overlay" onclick="closeAllModals()"></div>
+
+  <!-- Shopping Cart Drawer -->
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <h3>Your Order Cart</h3>
+      <button class="close-cart" onclick="toggleCartDrawer()">&times;</button>
+    </div>
+    <div class="cart-body" id="cart-items-container">
+      <!-- Items dynamically populated -->
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>Total:</span>
+        <span id="cart-total-price" style="color: var(--primary-red);">₱0.00</span>
+      </div>
+      <button class="btn btn-primary" style="width: 100%;" onclick="openCheckoutModal()">Checkout</button>
+    </div>
+  </div>
+
+  <!-- Checkout Form Modal -->
+  <div class="modal" id="checkout-modal">
+    <h3 style="color: var(--primary-red); margin-bottom:15px;">Checkout Form</h3>
+    <form id="checkout-form" onsubmit="submitOrder(event)">
+      <div class="form-group">
+        <label>Customer Name</label>
+        <input type="text" id="cust-name" required placeholder="Enter full name">
+      </div>
+      <div class="form-group">
+        <label>Contact Number</label>
+        <input type="tel" id="cust-phone" required placeholder="09163983130">
+      </div>
+      <div class="form-group">
+        <label>Delivery Address</label>
+        <textarea id="cust-address" rows="3" required placeholder="Lourmah, Mahayag, Zamboanga del Sur..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>Payment Method</label>
+        <select id="cust-payment">
+          <option value="Cash on Delivery">Cash on Delivery</option>
+          <option value="GCash">GCash</option>
+          <option value="Cash Pickup">Cash Pickup</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Place Order</button>
+    </form>
+  </div>
+
+  <!-- Receipt & Order Confirmation Modal -->
+  <div class="modal" id="confirmation-modal">
+    <div style="text-align: center; font-size: 2.5rem; margin-bottom: 5px;">🎉</div>
+    <h3 style="text-align: center; color: var(--primary-red);">Order Received!</h3>
+    <p style="text-align: center; font-size: 0.9rem; color: var(--text-dark);">Thank you for ordering from Pagkaon ni Amal! Your order has been received.</p>
+    
+    <!-- Dynamic Receipt Content -->
+    <div id="receipt-container"></div>
+
+    <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
+      <button class="btn btn-secondary" style="flex:1;" onclick="goToOrderHistory()">View Order History</button>
+      <button class="btn btn-primary" style="flex:1;" onclick="closeAllModals()">Close</button>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">
+    <span>🛒</span> <span id="toast-message">Item added to cart!</span>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="back-to-top" onclick="scrollToTop()">↑</button>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Pagkaon ni Amal. All Rights Reserved. Lourmah, Mahayag, Zamboanga del Sur.</p>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       JAVASCRIPT LOGIC
+       ========================================== -->
+  <script>
+    /* ------------------------------------------
+       1. FOOD PRODUCTS & BEST SERVES DATABASE
+       ------------------------------------------ */
+    const products = [
+      // Pizza
+      { id: 1, name: "Cheese Pizza", category: "Pizza", price: 180, desc: "Classic cheesy delight with rich tomato sauce.", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80" },
+      { id: 2, name: "Pepperoni Pizza", category: "Pizza", price: 210, desc: "Loaded with savory sliced pepperoni and cheese.", img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=400&q=80" },
+      { id: 3, name: "Hawaiian Pizza", category: "Pizza", price: 220, desc: "Sweet pineapple bits combined with tasty ham.", img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80" },
+
+      // Burger
+      { id: 4, name: "Classic Burger", category: "Burger", price: 65, desc: "Juicy beef patty served with fresh lettuce.", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80" },
+      { id: 5, name: "Cheese Burger", category: "Burger", price: 85, desc: "Topped with melted cheese slice and house sauce.", img: "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=400&q=80" },
+      { id: 6, name: "Chicken Burger", category: "Burger", price: 90, desc: "Crispy chicken fillet patty with mayo dress.", img: "https://images.unsplash.com/photo-1615297928064-24977384d0da?auto=format&fit=crop&w=400&q=80" },
+
+      // Fries
+      { id: 7, name: "Regular Fries", category: "Fries", price: 50, desc: "Crispy golden salted potato fries.", img: "https://images.unsplash.com/photo-1576107232684-1279f3908594?auto=format&fit=crop&w=400&q=80" },
+      { id: 8, name: "Cheese Fries", category: "Fries", price: 65, desc: "Coated with rich savory cheese flavor.", img: "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?auto=format&fit=crop&w=400&q=80" },
+      { id: 9, name: "BBQ Fries", category: "Fries", price: 65, desc: "Tossed in smoky barbecue seasoning.", img: "https://images.unsplash.com/photo-1585109649139-366815a0d713?auto=format&fit=crop&w=400&q=80" },
+
+      // Fried Chicken
+      { id: 10, name: "1-Piece Chicken", category: "Fried Chicken", price: 75, desc: "Golden crunchy chicken piece with gravy.", img: "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=400&q=80" },
+      { id: 11, name: "2-Piece Chicken", category: "Fried Chicken", price: 140, desc: "Two pieces of crispy fried chicken perfection.", img: "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=400&q=80" },
+      { id: 12, name: "Chicken Meal with Rice", category: "Fried Chicken", price: 95, desc: "Crispy chicken piece served with steamed rice.", img: "https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&w=400&q=80" },
+
+      // Shakes
+      { id: 13, name: "Chocolate Shake", category: "Shakes", price: 60, desc: "Rich creamy chocolate blended shake.", img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=400&q=80" },
+      { id: 14, name: "Strawberry Shake", category: "Shakes", price: 60, desc: "Refreshing sweet strawberry ice flavor.", img: "https://images.unsplash.com/photo-1553787499-6f9133860278?auto=format&fit=crop&w=400&q=80" },
+      { id: 15, name: "Mango Shake", category: "Shakes", price: 65, desc: "Made with ripe sweet mango pulp.", img: "https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=400&q=80" }
+    ];
+
+    const bestServesData = [
+      { id: 101, name: "Best Seller Burger", rating: "⭐⭐⭐⭐⭐ (5.0)", price: 95, desc: "Our double-patty signature cheese burger.", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80" },
+      { id: 102, name: "Signature Pizza", rating: "⭐⭐⭐⭐⭐ (4.9)", price: 240, desc: "Supreme toppings featuring ham, beef, and veggies.", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80" },
+      { id: 103, name: "Crispy Fried Chicken", rating: "⭐⭐⭐⭐⭐ (5.0)", price: 145, desc: "Ultra-crispy signature chicken recipe.", img: "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=400&q=80" },
+      { id: 104, name: "Loaded Fries", rating: "⭐⭐⭐⭐☆ (4.8)", price: 85, desc: "Fries smothered in cheese and meat bits.", img: "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?auto=format&fit=crop&w=400&q=80" },
+      { id: 105, name: "Special Shake", rating: "⭐⭐⭐⭐⭐ (4.9)", price: 75, desc: "Overloaded shake topped with ice cream.", img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=400&q=80" }
+    ];
+
+    /* LocalStorage State Management */
+    let cart = JSON.parse(localStorage.getItem('amal_cart')) || [];
+    let users = JSON.parse(localStorage.getItem('amal_users')) || [];
+    let currentUser = JSON.parse(localStorage.getItem('amal_current_user')) || null;
+    let selectedQuantities = {};
+    let authMode = 'login'; // 'login' or 'signup'
+
+    products.forEach(p => selectedQuantities[p.id] = 1);
+
+    /* ------------------------------------------
+       2. INITIALIZATION
+       ------------------------------------------ */
+    document.addEventListener('DOMContentLoaded', () => {
+      renderFoodGrid(products);
+      renderBestServes();
+      updateCartUI();
+      renderAccountTab();
+    });
+
+    /* ------------------------------------------
+       3. RENDER FUNCTIONS
+       ------------------------------------------ */
+    function renderFoodGrid(items) {
+      const container = document.getElementById('food-grid-container');
+      container.innerHTML = '';
+
+      if (items.length === 0) {
+        container.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">No items match your search.</p>`;
+        return;
+      }
+
+      items.forEach(item => {
+        const qty = selectedQuantities[item.id] || 1;
+        const card = document.createElement('div');
+        card.className = 'food-card';
+        card.innerHTML = `
+          <div class="food-img-wrapper">
+            <img src="${item.img}" alt="${item.name}">
+          </div>
+          <div class="food-info">
+            <div class="food-name">${item.name}</div>
+            <div class="food-desc">${item.desc}</div>
+            <div class="food-bottom">
+              <div class="food-price">₱${item.price.toFixed(2)}</div>
+              <div class="qty-control">
+                <button class="qty-btn" onclick="changeQty(${item.id}, -1)">-</button>
+                <span class="qty-num">${qty}</span>
+                <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+              </div>
+            </div>
+            <button class="add-to-cart-btn" onclick="addToCart(${item.id})">Add to Cart</button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderBestServes() {
+      const container = document.getElementById('best-serves-container');
+      container.innerHTML = '';
+
+      bestServesData.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'best-card';
+        card.innerHTML = `
+          <span class="bestseller-badge">POPULAR</span>
+          <img src="${item.img}" alt="${item.name}">
+          <div class="best-card-body">
+            <div style="color: #ffb703; font-size:0.9rem;">${item.rating}</div>
+            <h3>${item.name}</h3>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin: 8px 0;">${item.desc}</p>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 15px;">
+              <span style="font-size: 1.3rem; font-weight:800; color:var(--primary-red);">₱${item.price.toFixed(2)}</span>
+              <button class="btn btn-primary" style="padding: 8px 18px; font-size:0.9rem;" onclick="addBestToCart(${item.id})">Order Now</button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    /* ------------------------------------------
+       4. MY ACCOUNT & AUTHENTICATION SYSTEM
+       ------------------------------------------ */
+    function renderAccountTab() {
+      const card = document.getElementById('account-card-content');
+      
+      if (!currentUser) {
+        // Render Login or Signup View
+        card.innerHTML = `
+          <div class="auth-toggle-btns">
+            <button class="${authMode === 'login' ? 'active' : ''}" onclick="switchAuthMode('login')">Log In</button>
+            <button class="${authMode === 'signup' ? 'active' : ''}" onclick="switchAuthMode('signup')">Sign Up</button>
+          </div>
+          
+          <form class="auth-form" onsubmit="handleAuthSubmit(event)">
+            ${authMode === 'signup' ? `
+              <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="auth-name" required placeholder="Enter full name">
+              </div>
+            ` : ''}
+            <div class="form-group">
+              <label>Phone Number / Contact</label>
+              <input type="text" id="auth-phone" required placeholder="09163983130">
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" id="auth-password" required placeholder="••••••••">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%; margin-top:10px;">
+              ${authMode === 'login' ? 'Log In' : 'Create Account'}
+            </button>
+          </form>
+        `;
+      } else {
+        // Render Logged-in User Profile & Order History
+        const userOrders = currentUser.orders || [];
+        
+        let historyHTML = '';
+        if (userOrders.length === 0) {
+          historyHTML = `<p style="color: var(--text-muted); text-align:center; margin-top:20px;">No previous orders found. Time to order something delicious!</p>`;
+        } else {
+          historyHTML = userOrders.slice().reverse().map(order => `
+            <div class="order-history-card">
+              <div class="order-history-header">
+                <span>Order #${order.id}</span>
+                <span style="color: var(--primary-red);">₱${order.total.toFixed(2)}</span>
+              </div>
+              <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:8px;">
+                📅 Date: ${order.date} | Payment: ${order.payment}
+              </div>
+              <div style="font-size:0.9rem;">
+                <strong>Items:</strong>
+                <ul style="padding-left:20px; margin-top:5px;">
+                  ${order.items.map(i => `<li>${i.name} (x${i.qty}) - ₱${(i.price * i.qty).toFixed(2)}</li>`).join('')}
+                </ul>
+              </div>
+            </div>
+          `).join('');
+        }
+
+        card.innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #eee; padding-bottom:15px; margin-bottom:20px;">
+            <div>
+              <h3>Welcome back, ${currentUser.name}! 👋</h3>
+              <p style="color:var(--text-muted); font-size:0.9rem;">Contact: ${currentUser.phone}</p>
+            </div>
+            <button class="btn btn-secondary" style="padding: 6px 16px; font-size:0.85rem;" onclick="logout()">Log Out</button>
+          </div>
+          
+          <h4 style="color:var(--primary-red); margin-bottom:10px;">Your Order History</h4>
+          <div class="order-history-list">
+            ${historyHTML}
+          </div>
+        `;
+      }
+    }
+
+    function switchAuthMode(mode) {
+      authMode = mode;
+      renderAccountTab();
+    }
+
+    function handleAuthSubmit(e) {
+      e.preventDefault();
+      const phone = document.getElementById('auth-phone').value.trim();
+      const password = document.getElementById('auth-password').value.trim();
+
+      if (authMode === 'signup') {
+        const name = document.getElementById('auth-name').value.trim();
+        const existing = users.find(u => u.phone === phone);
+        if (existing) {
+          showToast("Phone number already registered. Please log in.");
+          return;
+        }
+
+        const newUser = { name, phone, password, orders: [] };
+        users.push(newUser);
+        localStorage.setItem('amal_users', JSON.stringify(users));
+        
+        currentUser = newUser;
+        localStorage.setItem('amal_current_user', JSON.stringify(currentUser));
+        showToast("Account created successfully!");
+        renderAccountTab();
+
+      } else {
+        // Login Mode Validation
+        const foundUser = users.find(u => u.phone === phone && u.password === password);
+        if (!foundUser) {
+          alert("Incorrect details! The credentials you entered do not match our records.");
+          return;
+        }
+
+        currentUser = foundUser;
+        localStorage.setItem('amal_current_user', JSON.stringify(currentUser));
+        showToast("Logged in successfully!");
+        renderAccountTab();
+      }
+    }
+
+    function logout() {
+      currentUser = null;
+      localStorage.removeItem('amal_current_user');
+      showToast("Logged out successfully.");
+      renderAccountTab();
+    }
+
+    /* ------------------------------------------
+       5. SEARCH & FILTER CONTROLS
+       ------------------------------------------ */
+    function changeQty(id, delta) {
+      let current = selectedQuantities[id] || 1;
+      current += delta;
+      if (current < 1) current = 1;
+      selectedQuantities[id] = current;
+      renderFoodGrid(products);
+    }
+
+    function filterCategory(cat, btn) {
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      if (cat === 'All') {
+        renderFoodGrid(products);
+      } else {
+        const filtered = products.filter(p => p.category === cat);
+        renderFoodGrid(filtered);
+      }
+    }
+
+    function filterMenu() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      const filtered = products.filter(p => p.name.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query));
+      renderFoodGrid(filtered);
+    }
+
+    /* ------------------------------------------
+       6. CART LOGIC
+       ------------------------------------------ */
+    function addToCart(productId) {
+      const product = products.find(p => p.id === productId);
+      const qty = selectedQuantities[productId] || 1;
+
+      const existingIndex = cart.findIndex(ci => ci.id === productId);
+      if (existingIndex > -1) {
+        cart[existingIndex].qty += qty;
+      } else {
+        cart.push({ ...product, qty: qty });
+      }
+
+      saveAndUpdateCart();
+      showToast(`Added ${product.name} (x${qty}) to cart!`);
+      selectedQuantities[productId] = 1;
+      renderFoodGrid(products);
+    }
+
+    function addBestToCart(bestId) {
+      const bestItem = bestServesData.find(b => b.id === bestId);
+      const existingIndex = cart.findIndex(ci => ci.id === bestId);
+      if (existingIndex > -1) {
+        cart[existingIndex].qty += 1;
+      } else {
+        cart.push({ ...bestItem, qty: 1 });
+      }
+      saveAndUpdateCart();
+      showToast(`Added ${bestItem.name} to cart!`);
+    }
+
+    function addComboToCart() {
+      const comboItem = { id: 999, name: "Special Combo Deal", price: 199, qty: 1, img: "https://images.unsplash.com/photo-1610614819513-58e34989848b?auto=format&fit=crop&w=400&q=80" };
+      const existingIndex = cart.findIndex(ci => ci.id === 999);
+      if (existingIndex > -1) {
+        cart[existingIndex].qty += 1;
+      } else {
+        cart.push(comboItem);
+      }
+      saveAndUpdateCart();
+      showToast("Special Deal added to cart!");
+    }
+
+    function updateCartQty(cartIndex, delta) {
+      cart[cartIndex].qty += delta;
+      if (cart[cartIndex].qty <= 0) {
+        cart.splice(cartIndex, 1);
+      }
+      saveAndUpdateCart();
+    }
+
+    function saveAndUpdateCart() {
+      localStorage.setItem('amal_cart', JSON.stringify(cart));
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const cartContainer = document.getElementById('cart-items-container');
+      const counter = document.getElementById('cart-counter');
+      const totalDisplay = document.getElementById('cart-total-price');
+
+      let totalItems = 0;
+      let totalPrice = 0;
+
+      cartContainer.innerHTML = '';
+
+      if (cart.length === 0) {
+        cartContainer.innerHTML = `<div class="empty-cart-msg">Your cart is empty.<br>Add something delicious! 🍔</div>`;
+      } else {
+        cart.forEach((item, index) => {
+          totalItems += item.qty;
+          totalPrice += item.price * item.qty;
+
+          const itemEl = document.createElement('div');
+          itemEl.className = 'cart-item';
+          itemEl.innerHTML = `
+            <img src="${item.img}" alt="${item.name}">
+            <div class="cart-item-details">
+              <div style="font-weight:700; font-size:0.95rem;">${item.name}</div>
+              <div style="color:var(--primary-red); font-weight:700;">₱${(item.price * item.qty).toFixed(2)}</div>
+              <div class="qty-control" style="margin-top:5px; display:inline-flex;">
+                <button class="qty-btn" onclick="updateCartQty(${index}, -1)">-</button>
+                <span class="qty-num">${item.qty}</span>
+                <button class="qty-btn" onclick="updateCartQty(${index}, 1)">+</button>
+              </div>
+            </div>
+            <button onclick="updateCartQty(${index}, -${item.qty})" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:1.1rem;">🗑️</button>
+          `;
+          cartContainer.appendChild(itemEl);
+        });
+      }
+
+      counter.innerText = totalItems;
+      totalDisplay.innerText = `₱${totalPrice.toFixed(2)}`;
+    }
+
+    /* ------------------------------------------
+       7. CHECKOUT & RECEIPT LOGIC
+       ------------------------------------------ */
+    function toggleCartDrawer() {
+      document.getElementById('cart-drawer').classList.toggle('open');
+      document.getElementById('overlay').classList.toggle('active');
+    }
+
+    function openCheckoutModal() {
+      if (cart.length === 0) {
+        showToast("Your cart is empty! Add items first.");
+        return;
+      }
+
+      // Check user authentication gating
+      if (!currentUser) {
+        alert("Please log in or sign up in 'My Account' before completing your checkout.");
+        document.getElementById('cart-drawer').classList.remove('open');
+        document.getElementById('overlay').classList.remove('active');
+        window.location.hash = '#my-account';
+        return;
+      }
+
+      // Pre-fill fields with user data
+      document.getElementById('cust-name').value = currentUser.name;
+      document.getElementById('cust-phone').value = currentUser.phone;
+
+      document.getElementById('cart-drawer').classList.remove('open');
+      document.getElementById('checkout-modal').classList.add('active');
+    }
+
+    function submitOrder(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('cust-name').value;
+      const phone = document.getElementById('cust-phone').value;
+      const address = document.getElementById('cust-address').value;
+      const payment = document.getElementById('cust-payment').value;
+
+      const orderTotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      const orderId = Math.floor(100000 + Math.random() * 900000);
+      const orderDate = new Date().toLocaleString();
+
+      const orderRecord = {
+        id: orderId,
+        date: orderDate,
+        items: [...cart],
+        total: orderTotal,
+        payment: payment,
+        address: address
+      };
+
+      // Push to Current User's history
+      currentUser.orders = currentUser.orders || [];
+      currentUser.orders.push(orderRecord);
+
+      // Sync user back to users database
+      const userIdx = users.findIndex(u => u.phone === currentUser.phone);
+      if (userIdx > -1) {
+        users[userIdx] = currentUser;
+      }
+
+      // Save state to localstorage
+      localStorage.setItem('amal_users', JSON.stringify(users));
+      localStorage.setItem('amal_current_user', JSON.stringify(currentUser));
+
+      // Build printable receipt HTML
+      const receiptContainer = document.getElementById('receipt-container');
+      receiptContainer.innerHTML = `
+        <div class="receipt-box">
+          <div class="receipt-title">PAGKAON NI AMAL</div>
+          <div style="text-align:center; font-size:0.75rem;">Lourmah, Mahayag, Zamboanga del Sur</div>
+          <div style="text-align:center; font-size:0.75rem; margin-bottom:10px;">Contact: 09163983130</div>
+          <hr style="border:none; border-top:1px dashed #333; margin:8px 0;">
+          <div class="receipt-line"><span>Order ID:</span> <span>#${orderId}</span></div>
+          <div class="receipt-line"><span>Customer:</span> <span>${name}</span></div>
+          <div class="receipt-line"><span>Payment:</span> <span>${payment}</span></div>
+          <div class="receipt-line"><span>Date:</span> <span>${orderDate}</span></div>
+          <hr style="border:none; border-top:1px dashed #333; margin:8px 0;">
+          ${cart.map(i => `
+            <div class="receipt-line">
+              <span>${i.name} (x${i.qty})</span>
+              <span>₱${(i.price * i.qty).toFixed(2)}</span>
+            </div>
+          `).join('')}
+          <hr style="border:none; border-top:1px dashed #333; margin:8px 0;">
+          <div class="receipt-line" style="font-weight:bold; font-size:1.05rem;">
+            <span>TOTAL:</span>
+            <span>₱${orderTotal.toFixed(2)}</span>
+          </div>
+        </div>
+      `;
+
+      // Clear Cart
+      cart = [];
+      saveAndUpdateCart();
+
+      // Switch Modals
+      document.getElementById('checkout-modal').classList.remove('active');
+      document.getElementById('confirmation-modal').classList.add('active');
+      document.getElementById('checkout-form').reset();
+
+      renderAccountTab();
+    }
+
+    function goToOrderHistory() {
+      closeAllModals();
+      window.location.hash = '#my-account';
+    }
+
+    function closeAllModals() {
+      document.getElementById('cart-drawer').classList.remove('open');
+      document.getElementById('checkout-modal').classList.remove('active');
+      document.getElementById('confirmation-modal').classList.remove('active');
+      document.getElementById('overlay').classList.remove('active');
+    }
+
+    /* ------------------------------------------
+       8. UTILITY FUNCTIONS
+       ------------------------------------------ */
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+
+    function toggleMobileNav() {
+      document.getElementById('nav-links').classList.toggle('active');
+    }
+
+    function closeMobileNav() {
+      document.getElementById('nav-links').classList.remove('active');
+    }
+
+    window.addEventListener('scroll', () => {
+      const btt = document.getElementById('back-to-top');
+      if (window.scrollY > 300) {
+        btt.classList.add('show');
+      } else {
+        btt.classList.remove('show');
+      }
+    });
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
